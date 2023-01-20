@@ -1,0 +1,80 @@
+body{
+    font-family: 'roboto', sans-serif;
+}
+*{
+    box-sizing: border-box;
+}
+.container{
+    background-color:  #E5E5E5;
+    width: 400px;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+  
+  
+}
+header{
+    background-color: white;
+    width: 400px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 18px 21px 17px 22px;
+    box-shadow: 0 4px 6px 0 rgba(0000, 0000, 0000, 0.5);
+}
+header ion-icon{
+    width: 42px;
+    height: 30px;
+}
+img{
+    width: 75px;
+    height: 53px;
+ 
+}
+.corpo-de-mensagens{
+    width: 100%;
+    margin-top: 26px;
+
+}
+.mensagem{
+    text-align: center;
+    width: 375px;
+    height: 40px;
+    margin-top: 8px;
+    border-radius: 2px;
+}
+.envio{
+    background-color: white;
+    width: 400px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 25px 18px;
+    box-shadow: 0 -4px 6px 0 rgba(0000, 0000, 0000, 0.5);
+}
+.envio ion-icon{
+    width: 26px;
+    height: 26px;
+}
+input{
+    font-style: italic;
+    border: none;
+}
+input:focus{
+    outline: none;
+    font-style: normal;
+}
+input, input:focus{
+    font-weight: 400;
+    font-size: 18px;
+}

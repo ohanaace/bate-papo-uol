@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bate-papo UOL</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="batepapo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+        <header>
+            <img src="http://conteudo.imguol.com.br/c/entretenimento/96/2018/02/20/bate-papo-uol-bate-recorde-historico-de-audiencia-no-carnaval-1519174175244_v2_600x600.jpg">
+            <ion-icon name="people"></ion-icon>
+        </header>
+        <ul class="corpo-de-mensagens">   
+
+        </ul>
+        <div class="envio">
+            <input type="text" name="input" value="Escreva aqui..." onfocus="this.value = ''">
+            <ion-icon name="paper-plane-outline" onclick="enviar()"></ion-icon>
+        </div>
+    </div><!--fim da div container-->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="batepapouol.js"></script>
+  </body>
+    </html>
