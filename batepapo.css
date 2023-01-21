@@ -5,7 +5,7 @@ body{
     box-sizing: border-box;
 }
 .container{
-    background-color:  #E5E5E5;
+    background-color:  #f7f7f7;
     width: 400px;
     height: 900px;
     display: flex;
@@ -43,11 +43,34 @@ img{
 
 }
 .mensagem{
-    text-align: center;
     width: 375px;
     height: 40px;
     margin-top: 8px;
     border-radius: 2px;
+}
+.status{
+    background-color: #DCDCDC;
+}
+.publica{
+    background-color: #FFFFFF;
+    ;
+}
+.tempo{
+    color: #AAAAAA;
+   
+    
+}
+.usuario{
+    font-weight: 700;
+}
+.tempo, .texto{
+    font-weight: 400;
+}
+.usuario, .texto{
+    color: #000000;
+}
+.tempo, .usuario, .texto{
+    font-size: 14px;
 }
 .envio{
     background-color: white;

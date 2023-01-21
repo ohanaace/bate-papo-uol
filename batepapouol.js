@@ -27,13 +27,14 @@ exibeMensagens()
 }
 function exibeMensagens(){
     const batePapo = document.querySelector('.corpo-de-mensagens');
-    
-    for(let i = 0; i < chat.length; i++){
-        batePapo.innerHTML += 
-        `<li class="mensagem">
-        ${chat[i]}
-        <\li>`
-    }
+    chat.map((elemento) => {
+        if(elemento.type === 'status'){
+            return batePapo.innerHTML += `<li class="mensagem status"> <span class="tempo">(${elemento.time})<\span> <span class="usuario">${elemento.from} <\span> <span class="texto">${elemento.text}<\span> <\li>`
+        }
+        if(elemento.type === 'message'){
+            return batePapo.innerHTML += `<li class="mensagem publica"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
+        }
+    })
 }
 
 function enviar(){
