@@ -29,7 +29,6 @@ function scroll(){
 }
 
 function renderizaMensagens(sucesso){
-    console.log('suas mensagens chegaram!!!');
     chat = sucesso.data;
 
 exibeMensagens()
@@ -43,10 +42,9 @@ function exibeMensagens(){
         if(elemento.type === 'message'){
             return batePapo.innerHTML += `<li data-test="message" class="mensagem publica"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
         }
-        if(elemento.type === 'private_message' && (elemento.to !== nome.name || elemento.from !== nome.name)){
-            return;
-        }
-        if(elemento.type === 'private_message' && (elemento.to === nome.name || elemento.from === nome.name)){
+       
+        if(elemento.type === 'private_message' && elemento.from === nome.name || elemento.to === nome.name){
+            console.log('entrou na mensagem privada');
             return batePapo.innerHTML += `<li data-test="message" class="mensagem privada"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> reservadamente para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
         }
     }
@@ -63,7 +61,7 @@ function enviar(){
         from: nome.name,
         to: "Todos",
         text: mensagemEnviada,
-        type: "message"
+        type: "private_message"
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', novaMensagem);
     promessa.then(exibeMensagens);
