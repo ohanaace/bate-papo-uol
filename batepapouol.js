@@ -10,7 +10,7 @@ manterConectado()
 
 function deuRuim(erro){
     const statusCode = erro.response.status;
-    while(statusCode === 400){
+    if(statusCode === 400){
         alert("Usuário já cadastrado no chat.");
         nome = {name: prompt("Digite seu nome:")};
     }
@@ -54,18 +54,19 @@ function exibeMensagens(){
 
 
 function enviar(){
-    const mensagemEscrita = document.querySelector('input');
+    let mensagemEscrita = document.querySelector('input');
     const mensagemEnviada = mensagemEscrita.value;
-    console.log(mensagemEnviada)
+    mensagemEscrita.value = '';
     const novaMensagem = {
         from: nome.name,
         to: "Todos",
         text: mensagemEnviada,
-        type: "private_message"
+        type: "message"
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', novaMensagem);
     promessa.then(exibeMensagens);
     promessa.catch(falhaAoEnviar);
+
 }
 function falhaAoEnviar(erro){
     console.log('erro ao enviar a mensagem');
