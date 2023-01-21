@@ -20,8 +20,8 @@
 
         </ul>
         <div class="envio">
-            <input data-test="input-message" type="text" name="input" value="Escreva aqui..." onfocus="this.value = ''">
-            <button data-test="send-message"><ion-icon name="paper-plane-outline" onclick="enviar()"></ion-icon></button>
+            <input data-test="input-message" type="text" name="input" id="conteudo" value="Escreva aqui..." onfocus="this.value = ''">
+            <button data-test="send-message" onclick="enviar()"><ion-icon name="paper-plane-outline"></ion-icon></button>
         </div>
     </div><!--fim da div container-->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

@@ -101,3 +101,7 @@ input, input:focus{
     font-weight: 400;
     font-size: 18px;
 }
+button{
+    border: none;
+    background-color: white;
+}

@@ -36,17 +36,23 @@ function exibeMensagens(){
         }
     })
 }
-document.querySelector('.corpo-de-mensagens').lastChild.scrollIntoView();
+document.querySelector('.corpo-de-mensagens').lastChildElement.scrollIntoView();
 
 function enviar(){
-    const msn = document.querySelector('.envio');
-    const mensagemEnviada = document.querySelector('input').value
+    const mensagemEscrita = document.querySelector('input');
+    const mensagemEnviada = mensagemEscrita.value;
+    console.log(mensagemEnviada)
     const novaMensagem = {
-        from: nome,
+        from: nome.name,
         to: "Todos",
         text: mensagemEnviada,
         type: "message"
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', novaMensagem);
     promessa.then(exibeMensagens);
+    promessa.catch(falhaAoEnviar);
+}
+function falhaAoEnviar(erro){
+    console.log('erro ao enviar a mensagem');
+    console.log(erro.response);
 }
