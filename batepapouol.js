@@ -6,6 +6,8 @@ const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/participa
 promessa.then(pegarMensagensDoBatePapo);
 promessa.catch(deuRuim);
 
+manterConectado()
+
 function deuRuim(erro){
     const statusCode = erro.response.status;
     while(statusCode === 400){
@@ -16,7 +18,14 @@ function deuRuim(erro){
 function pegarMensagensDoBatePapo(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promessa.then(renderizaMensagens);
-    promessa.catch()
+    promessa.catch();
+    
+}
+setInterval(pegarMensagensDoBatePapo, 3000);
+
+function scroll(){
+    
+    document.querySelector('.corpo-de-mensagens').lastChild.scrollIntoView();
 }
 
 function renderizaMensagens(sucesso){
@@ -34,9 +43,17 @@ function exibeMensagens(){
         if(elemento.type === 'message'){
             return batePapo.innerHTML += `<li data-test="message" class="mensagem publica"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
         }
-    })
+        if(elemento.type === 'private_message' && (elemento.to !== nome.name || elemento.from !== nome.name)){
+            return;
+        }
+        if(elemento.type === 'private_message' && (elemento.to === nome.name || elemento.from === nome.name)){
+            return batePapo.innerHTML += `<li data-test="message" class="mensagem privada"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> reservadamente para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
+        }
+    }
+    )
+    scroll();
 }
-document.querySelector('.corpo-de-mensagens').lastChildElement.scrollIntoView();
+
 
 function enviar(){
     const mensagemEscrita = document.querySelector('input');
@@ -55,4 +72,12 @@ function enviar(){
 function falhaAoEnviar(erro){
     console.log('erro ao enviar a mensagem');
     console.log(erro.response);
+}
+function manterConectado(){
+    setInterval(postNoServer, 5000)
+}
+function postNoServer(){
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: nome.name});
+    promessa.then(()=> console.log('tá dando certo'));
+    promessa.catch(() => console.log('deu ruim'));
 }
