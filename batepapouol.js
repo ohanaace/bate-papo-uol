@@ -29,17 +29,24 @@ function exibeMensagens(){
     const batePapo = document.querySelector('.corpo-de-mensagens');
     chat.map((elemento) => {
         if(elemento.type === 'status'){
-            return batePapo.innerHTML += `<li class="mensagem status"> <span class="tempo">(${elemento.time})<\span> <span class="usuario">${elemento.from} <\span> <span class="texto">${elemento.text}<\span> <\li>`
+            return batePapo.innerHTML += `<li data-test="message" class="mensagem status"> <span class="tempo">(${elemento.time})<\span> <span class="usuario">${elemento.from} <\span> <span class="texto">${elemento.text}<\span> <\li>`
         }
         if(elemento.type === 'message'){
-            return batePapo.innerHTML += `<li class="mensagem publica"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
+            return batePapo.innerHTML += `<li data-test="message" class="mensagem publica"> <span class="tempo"> (${elemento.time}) <\span> <span class="usuario"> ${elemento.from} <\span> <span class="texto"> para <\span> <span class="usuario"> ${elemento.to}: <\span>  <span class="texto">${elemento.text}<\span> <\li>`
         }
     })
 }
+document.querySelector('.corpo-de-mensagens').lastChild.scrollIntoView();
 
 function enviar(){
     const msn = document.querySelector('.envio');
-    const minhaMensagem = {text: msn.children[0].value};
-    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', minhaMensagem);
+    const mensagemEnviada = document.querySelector('input').value
+    const novaMensagem = {
+        from: nome,
+        to: "Todos",
+        text: mensagemEnviada,
+        type: "message"
+    }
+    const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', novaMensagem);
     promessa.then(exibeMensagens);
 }
