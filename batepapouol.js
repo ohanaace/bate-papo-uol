@@ -14,6 +14,7 @@ function deuRuim(erro){
     if(statusCode === 400){
         alert("Usuário já cadastrado no chat.");
         nome = {name: prompt("Digite seu nome:")};
+        logIn();
     }
 }
 function pegarMensagensDoBatePapo(){
