@@ -64,7 +64,7 @@ function enviar(){
         type: "message"
     }
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', novaMensagem);
-    promessa.then(exibeMensagens);
+    promessa.then(pegarMensagensDoBatePapo);
     promessa.catch(falhaAoEnviar);
 
 }
