@@ -1,12 +1,13 @@
 let nome = {name: prompt("Digite seu nome:")};
 let chat =[];
 
+logIn();
 
+function logIn(){
 const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nome);
 promessa.then(pegarMensagensDoBatePapo);
 promessa.catch(deuRuim);
-
-manterConectado()
+}
 
 function deuRuim(erro){
     const statusCode = erro.response.status;
@@ -19,7 +20,7 @@ function pegarMensagensDoBatePapo(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promessa.then(renderizaMensagens);
     promessa.catch();
-    
+    manterConectado();
 }
 setInterval(pegarMensagensDoBatePapo, 3000);
 
