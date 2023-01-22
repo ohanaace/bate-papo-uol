@@ -69,14 +69,24 @@ function enviar(){
 
 }
 function falhaAoEnviar(erro){
-    console.log('erro ao enviar a mensagem');
-    console.log(erro.response);
+    alert('Mensagem não enviada, você se desconectou');
+    window.location.reload();
 }
 function manterConectado(){
-    setInterval(postNoServer, 5000)
+    setInterval(postNoServer, 5000);
 }
 function postNoServer(){
     const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', {name: nome.name});
     promessa.then(()=> console.log('tá dando certo'));
-    promessa.catch(() => console.log('deu ruim'));
+    promessa.catch(desconectadoDoServidor);
+}
+function desconectadoDoServidor(){
+    const desconexão = {
+        from: nome.name,
+        to: 'Todos',
+        text: 'sai da sala...',
+        type: 'status'
+    }
+    axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', desconexão);
+    window.location.reload();
 }
