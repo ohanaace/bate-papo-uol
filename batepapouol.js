@@ -14,7 +14,7 @@ function deuRuim(erro){
     const statusCode = erro.response.status;
     if(statusCode === 400){
         alert("Usuário já cadastrado no chat.");
-        logIn();
+        window.location.reload();
     }
 }
 function pegarMensagensDoBatePapo(){
