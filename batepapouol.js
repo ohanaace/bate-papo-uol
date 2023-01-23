@@ -1,9 +1,10 @@
-let nome = {name: prompt("Digite seu nome:")};
+let name;
 let chat =[];
-
 logIn();
 
+
 function logIn(){
+nome = {name: prompt("Digite seu nome:")};
 const promessa = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', nome);
 promessa.then(pegarMensagensDoBatePapo);
 promessa.catch(deuRuim);
@@ -13,7 +14,6 @@ function deuRuim(erro){
     const statusCode = erro.response.status;
     if(statusCode === 400){
         alert("Usuário já cadastrado no chat.");
-        nome = {name: prompt("Digite seu nome:")};
         logIn();
     }
 }
